@@ -5,6 +5,7 @@ import Dashboard from "./components/dashboard";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import ChangePass from "./components/chpass";
+import PilihSchedule from "./components/PilihSchedule"
 
 //👇🏻 React-Toastify configuration
 import { ToastContainer } from "react-toastify";
