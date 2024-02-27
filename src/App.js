@@ -20,6 +20,7 @@ const App = () => {
                     <Route path='/signup' element={<Signup />} />
                     <Route path='/dashboard' element={<Dashboard />} />
                     <Route path='/dashboard/change-pass' element={<ChangePass />} />
+                    <Route path='/PilihSchedule' element={<PilihSchedule />} />
                 </Routes>
             </BrowserRouter>
             <ToastContainer />
