@@ -1,13 +1,40 @@
 import { Button, Checkbox, Form, Input } from 'antd';
+// import { useContext, useState, Redirect } from 'react';
+// import AuthContext from '../context/AuthContext.js';
 
 function Login() {
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const { setUser } = useContext(AuthContext); 
+
   const onFinish = (values) => {
-    console.log('Success:', values);
+    // if (values.username === 'praktikan1' && values.password === 'passpraktikan1') {
+    //   setUser({
+    //     username: values.username,
+    //     role: 'praktikan' 
+    //   });
+    //   console.log('Login Berhasil:', values);
+    //   setIsLoggedIn(true);
+    // }
+    // else if (values.username === 'asprak1' && values.password === 'passasprak1') {
+    //   setUser({
+    //     username: values.username,
+    //     role: 'asprak' 
+    //   });
+    //   console.log('Login Berhasil:', values);
+    //   setIsLoggedIn(true);
+    // } else {
+      //   console.log('Login Salah');
+      // }
+    console.log('Login Berhasil:', values);
   };
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
-  return ( <Form
+  return ( 
+    // isLoggedIn ? (
+    //   <Redirect to="/dashboard" />
+    // ) : (
+    <Form
     name="basic"
     labelCol={{
       span: 8,
@@ -74,6 +101,7 @@ function Login() {
     </Form.Item>
   </Form>
   )
+  // )
 };
 
 export default Login

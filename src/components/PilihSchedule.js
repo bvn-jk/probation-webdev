@@ -21,7 +21,6 @@ function App() {
     };
 
     const handleSave = () => {
-        // Tampilkan alert untuk konfirmasi
         const isConfirmed = window.confirm("Apakah Anda yakin untuk menyimpan?");
         if (isConfirmed) {
             setIsSaved(true); 
@@ -43,9 +42,6 @@ function App() {
 
     return (
         <div className="container" style={{ paddingTop: '60px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <nav className="navbar">
-                <span className="navbar-brand">INI NAVBAR</span>
-            </nav>
             <h2 style={{ marginBottom: '20px' }}>Pilih Waktu yang Kosong</h2>
             <div className="table-wrapper">
                 <table className="table table-striped table-hover">
