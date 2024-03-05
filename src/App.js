@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 //👇🏻 component
 import Dashboard from "./components/dashboard";
-import Login from "./components/Login";
+import Login from "./components/Login"
 import Signup from "./components/Signup";
 import ChangePass from "./components/chpass";
 
