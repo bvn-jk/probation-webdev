@@ -50,7 +50,7 @@ const App = () => {
             <Route path="/" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dashboard/change-pass" element={<ChangePass />} />
+            <Route path="/ChangePass" element={<ChangePass />} />
             <Route path="/PilihSchedule" element={<PilihSchedule />} />
             <Route path="/Logout" element={<Logout />} />
           </Routes>
