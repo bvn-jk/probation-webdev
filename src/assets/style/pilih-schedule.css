@@ -143,7 +143,7 @@ body {
     border: none;
     border-radius: 5px;
     font-size: 16px;
-    cursor: pointer;
+    cursor: auto;
     margin-left: 10px;
 }
 
@@ -173,7 +173,7 @@ body {
 a {
 	text-decoration: none;
 	color: #c58940;
-	cursor: pointer;
+	cursor: auto;
 }
 input,
 textarea {
@@ -185,7 +185,7 @@ label {
 	margin-bottom: 5px;
 }
 button {
-	cursor: pointer;
+	cursor: auto;
 	outline: none;
 	border: none;
 	padding: 10px;
