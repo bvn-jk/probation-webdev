@@ -96,46 +96,58 @@ function Dashboard() {
   );
 
   return (
-    <div className="App">
-      <div>
-        <input
-          type="text"
-          placeholder="Add Title"
-          style={{ width: "20%", marginRight: "10px" }}
-          value={newEvent.title}
-          onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+    <div
+      className="container"
+      style={{
+        padding: "5%",
+      }}
+    >
+      <h1 style={{ paddingBottom: "30px", textAlign: "center" }}>
+        Selamat Datang, Praktikan
+      </h1>
+      <div className="App">
+        <div>
+          <input
+            type="text"
+            placeholder="Add Title"
+            style={{ width: "20%", marginRight: "10px" }}
+            value={newEvent.title}
+            onChange={(e) =>
+              setNewEvent({ ...newEvent, title: e.target.value })
+            }
+          />
+          <DatePicker
+            placeholderText="Start Date"
+            style={{ marginRight: "10px" }}
+            selected={newEvent.start}
+            onChange={(start) => setNewEvent({ ...newEvent, start })}
+            showTimeSelect
+            dateFormat="Pp"
+          />
+          <DatePicker
+            placeholderText="End Date"
+            selected={newEvent.end}
+            onChange={(end) => setNewEvent({ ...newEvent, end })}
+            showTimeSelect
+            dateFormat="Pp"
+          />
+          <button style={{ marginTop: "10px" }} onClick={handleAddEvent}>
+            Add Event
+          </button>
+        </div>
+        <DnDCalendar
+          localizer={localizer}
+          events={allEvents}
+          onEventDrop={moveEvent}
+          onEventResize={resizeEvent}
+          onSelectEvent={handleDeleteEvent}
+          popup
+          resizable
+          startAccessor="start"
+          endAccessor="end"
+          style={{ height: 600, margin: "50px" }}
         />
-        <DatePicker
-          placeholderText="Start Date"
-          style={{ marginRight: "10px" }}
-          selected={newEvent.start}
-          onChange={(start) => setNewEvent({ ...newEvent, start })}
-          showTimeSelect
-          dateFormat="Pp"
-        />
-        <DatePicker
-          placeholderText="End Date"
-          selected={newEvent.end}
-          onChange={(end) => setNewEvent({ ...newEvent, end })}
-          showTimeSelect
-          dateFormat="Pp"
-        />
-        <button style={{ marginTop: "10px" }} onClick={handleAddEvent}>
-          Add Event
-        </button>
       </div>
-      <DnDCalendar
-        localizer={localizer}
-        events={allEvents}
-        onEventDrop={moveEvent}
-        onEventResize={resizeEvent}
-        onSelectEvent={handleDeleteEvent}
-        popup
-        resizable
-        startAccessor="start"
-        endAccessor="end"
-        style={{ height: 600, margin: "50px" }}
-      />
     </div>
   );
 }

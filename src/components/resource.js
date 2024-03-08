@@ -1,8 +1,14 @@
-import { Alert } from "antd";
-
-export async function handleLogin(navigate) {
+export async function handleLogin(usn, pass, navigate) {
   try {
-    navigate("/dashboard");
+    if (usn === "parti" && pass === "parti") {
+      navigate("/dashboard");
+      return false;
+    } else if (usn === "kordas" && pass === "kordas") {
+      navigate("/dashboardk");
+      return false;
+    } else {
+      return true;
+    }
   } catch (err) {
     console.error(err);
   }

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from "react";
 
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 //👇🏻 component
@@ -9,14 +9,13 @@ import Signup from "./components/Signup";
 import ChangePass from "./components/chpass";
 import PilihSchedule from "./components/PilihSchedule";
 import { AuthProvider } from "./context/AuthContext";
-import AuthContext from "./context/AuthContext";
 
 //👇🏻 React-Toastify configuration
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Navbar() {  
-    return (
+function Navbar() {
+  return (
     <nav className="navbar">
       <span className="navbar-brand">
         <Link to="/ChangePass" className="nav-link">

@@ -5,10 +5,6 @@ import { handleChangePass } from "./resource";
 function ChangePass() {
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
-  const boxStyle = {
-    width: window.innerWidth,
-    height: window.innerHeight,
-  };
 
   const success = () => {
     messageApi.open({
@@ -39,24 +35,25 @@ function ChangePass() {
     <div
       className="container"
       style={{
-        paddingTop: "60px",
+        paddingTop: "20%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
       }}
     >
-      <Flex style={boxStyle} justify="center" align="center">
+      <h1 style={{ paddingBottom: "30px" }}>Silahkan masukkan password baru</h1>
+      <Flex justify="center" align="center">
         {contextHolder}
         <Form
           name="basic"
           labelCol={{
-            span: 8,
+            span: 100,
           }}
           wrapperCol={{
-            span: 16,
+            span: 100,
           }}
           style={{
-            maxWidth: 600,
+            maxWidth: 900,
           }}
           initialValues={{
             remember: true,
@@ -66,8 +63,8 @@ function ChangePass() {
           autoComplete="off"
         >
           <Form.Item
-            label="Password"
-            name="password"
+            label="Password Baru"
+            name="passwordchange"
             rules={[
               {
                 required: true,
@@ -79,8 +76,8 @@ function ChangePass() {
           </Form.Item>
 
           <Form.Item
-            label="Password2"
-            name="password2"
+            label="Konfirmasi Password:"
+            name="passwordconf"
             rules={[
               {
                 required: true,
