@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import axios from "axios"; // Import axios
 import AuthContext from "../context/AuthContext.js";
 import "../assets/style/pilih-schedule.css";
+import NavbarP from "./Navbar";
 
 const apiURL = "http://localhost:3005/selected-schedule";
 
@@ -91,64 +92,67 @@ function PilihSchedule() {
   };
 
   return (
-    <div
-      className="container"
-      style={{
-        padding: "5%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <h1>Pilih Waktu yang Kosong</h1>
-      <div className="table-wrapper">
-        <table className="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th>Waktu</th>
-              {hari.map((day, index) => (
-                <th key={index}>{day}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {waktu.map((jam, index) => (
-              <tr key={index}>
-                <td>{jam}</td>
+    <>
+      <NavbarP />
+      <div
+        className="container"
+        style={{
+          padding: "5%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <h1>Pilih Waktu yang Kosong</h1>
+        <div className="table-wrapper">
+          <table className="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Waktu</th>
                 {hari.map((day, index) => (
-                  <td key={index}>
-                    <span className="custom-checkbox">
-                      <input
-                        type="checkbox"
-                        id={`checkbox${index}${jam}`}
-                        checked={selectedWaktu.some(
-                          ({ hari: selectedHari, waktu: selectedWaktu }) =>
-                            selectedHari === day && selectedWaktu === jam
-                        )}
-                        onChange={() => !isSaved && toggleCheckbox(day, jam)}
-                      />
-                      <label htmlFor={`checkbox${index}${jam}`}></label>
-                    </span>
-                  </td>
+                  <th key={index}>{day}</th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="button-wrapper">
-          {!isSaved && (
-            <button className="btn btn-save" onClick={handleSave}>
-              Save
-            </button>
-          )}
-          {isSaved && (
-            <button className="btn btn-edit" onClick={handleEdit}>
-              Edit
-            </button>
-          )}
+            </thead>
+            <tbody>
+              {waktu.map((jam, index) => (
+                <tr key={index}>
+                  <td>{jam}</td>
+                  {hari.map((day, index) => (
+                    <td key={index}>
+                      <span className="custom-checkbox">
+                        <input
+                          type="checkbox"
+                          id={`checkbox${index}${jam}`}
+                          checked={selectedWaktu.some(
+                            ({ hari: selectedHari, waktu: selectedWaktu }) =>
+                              selectedHari === day && selectedWaktu === jam
+                          )}
+                          onChange={() => !isSaved && toggleCheckbox(day, jam)}
+                        />
+                        <label htmlFor={`checkbox${index}${jam}`}></label>
+                      </span>
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="button-wrapper">
+            {!isSaved && (
+              <button className="btn btn-save" onClick={handleSave}>
+                Save
+              </button>
+            )}
+            {isSaved && (
+              <button className="btn btn-edit" onClick={handleEdit}>
+                Edit
+              </button>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
