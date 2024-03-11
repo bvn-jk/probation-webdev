@@ -17,14 +17,16 @@ function Logout() {
   };
 
   const handleClick = () => {
-    handleLogout(navigate);
-    // setAuth(false); =>> masih gagal
-    openNotificationWithIcon('success');
+    if (window.confirm('Are you sure you want to logout?')) { 
+      handleLogout(navigate);
+      // setAuth(false); =>> masih gagal
+      openNotificationWithIcon('success');
+    }
   };
 
   useEffect(() => {
     handleClick(); 
-  }); 
+  }, []); 
 }
 
 export default Logout;
