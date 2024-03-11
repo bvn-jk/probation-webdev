@@ -4,6 +4,11 @@ function NavbarP() {
   return (
     <nav className="navbar">
       <span className="navbar-brand">
+        <Link to="/Logout" className="logout-link" style={{ color: "red" }}>
+          Logout
+        </Link>
+      </span>
+      <span className="navbar-brand">
         <Link to="/ChangePass" className="nav-link">
           Ganti Password
         </Link>
@@ -16,11 +21,6 @@ function NavbarP() {
       <span className="navbar-brand">
         <Link to="/PilihSchedule" className="nav-link">
           Pemilihan Jadwal
-        </Link>
-      </span>
-      <span className="navbar-brand">
-        <Link to="/Logout" className="nav-link" style={{ color: "red" }}>
-          Logout
         </Link>
       </span>
     </nav>

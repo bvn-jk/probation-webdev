@@ -4,7 +4,7 @@ export async function handleLogin(usn, pass, navigate) {
       navigate("/dashboard");
       return false;
     } else if (usn === "kordas" && pass === "kordas") {
-      navigate("/dashboardk");
+      navigate("/dashboard");
       return false;
     } else {
       return true;
@@ -13,6 +13,10 @@ export async function handleLogin(usn, pass, navigate) {
     console.error(err);
   }
 }
+
+export async function handleLogout(navigate) {
+  navigate("/");
+};
 
 export async function handleRegister(navigate) {
   try {

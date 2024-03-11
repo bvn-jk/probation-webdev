@@ -1,9 +1,7 @@
-## Login
+### Status Login
 
-- Status login dikelola di dalam file `src/context/authcontext`.
-- Navbar akan disembunyikan jika pengguna belum login.
+- Status login bakal diatur di dalam file `src/context/AuthContext`, tp blm berhasil, jd blm bisa ngatur permission buat ke page2-nya
 
-## Data Schedule
+### Data Schedule
 - Data pemilihan schedule dari page "PilihSchedule" sudah dapat disimpan di file `server/database.json`.
-- Data akan tersimpan di sana, dan apabila user melakukan update jadwal lalu memencet tombol "Save", isi dari json tersebut juga akan ter-update
 - Untuk mengakses data dalam json tersebut, jalankan perintah: `json-server --watch server/database.json --port 3005`.

@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import axios from "axios"; // Import axios
 import AuthContext from "../context/AuthContext.js";
-import "../assets/style/pilih-schedule.css";
 import NavbarP from "./Navbar";
 
 const apiURL = "http://localhost:3005/selected-schedule";
