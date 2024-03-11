@@ -4,7 +4,7 @@ function NavbarP() {
   return (
     <nav className="navbar">
       <span className="navbar-brand">
-        <Link to="/Logout" className="logout-link" style={{ color: "red" }}>
+        <Link to="/Logout" className="logout-link">
           Logout
         </Link>
       </span>
