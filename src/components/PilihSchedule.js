@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import axios from "axios"; // Import axios
+import React, { useContext, useState, useEffect } from "react";
+import axios from "axios";
 import AuthContext from "../context/AuthContext.js";
 import NavbarP from "./Navbar";
 
@@ -24,30 +24,53 @@ function PilihSchedule() {
 
   const [selectedWaktu, setSelectedWaktu] = useState([]);
   const [isSaved, setIsSaved] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  const loadData = () => {
+    axios
+    .get(apiURL)
+      .then((response) => {
+        const data = response.data.length > 0 ? response.data : generateDefaultData();
+        setSelectedWaktu(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Gagal memuat data:", error);
+      });
+  };
+  
+  const generateDefaultData = () => {
+    const defaultData = [];
+    hari.forEach((day) => {
+      waktu.forEach((time) => {
+        defaultData.push({ hari: day, waktu: time });
+      });
+    });
+    console.log(defaultData);
+    return defaultData;
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
 
   const toggleCheckbox = (day, time) => {
-    if (!isSaved) {
-      const isExist = selectedWaktu.some(
-        ({ hari, waktu }) => hari === day && waktu === time
-      );
-      if (isExist) {
-        setSelectedWaktu(
-          selectedWaktu.filter(
-            (item) => !(item.hari === day && item.waktu === time)
-          )
-        );
-      } else {
-        setSelectedWaktu([...selectedWaktu, { hari: day, waktu: time }]);
-      }
-    } else {
-      return;
-    }
+    const updatedSelectedWaktu = selectedWaktu.some(
+      ({ hari: selectedHari, waktu: selectedWaktu }) =>
+        selectedHari === day && selectedWaktu === time
+    )
+      ? selectedWaktu.filter(
+          ({ hari: selectedHari, waktu: selectedWaktu }) =>
+            !(selectedHari === day && selectedWaktu === time)
+        )
+      : [...selectedWaktu, { hari: day, waktu: time }];
+    setSelectedWaktu(updatedSelectedWaktu);
   };
 
   const handleSave = () => {
     const isConfirmed = window.confirm("Apakah Anda yakin untuk menyimpan?");
     const scheduleArray = {
-      id: 0, // ini ceritanya ID pengguna yang lagi ngebuka halaman tsb
+      id: 0,
       username: username,
       jadwal: hari.map((day) => ({
         [day]: waktu.reduce((acc, cur) => {
@@ -61,10 +84,9 @@ function PilihSchedule() {
         }, {}),
       })),
     };
-    console.log("=======");
+
     if (isConfirmed) {
       setIsSaved(true);
-      console.log(scheduleArray);
 
       axios
         .put(apiURL + "/" + scheduleArray.id, scheduleArray, {
@@ -89,6 +111,7 @@ function PilihSchedule() {
       setIsSaved(false);
     }
   };
+  
 
   return (
     <>
@@ -104,39 +127,43 @@ function PilihSchedule() {
       >
         <h1>Pilih Waktu yang Kosong</h1>
         <div className="table-wrapper">
-          <table className="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th>Waktu</th>
-                {hari.map((day, index) => (
-                  <th key={index}>{day}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {waktu.map((jam, index) => (
-                <tr key={index}>
-                  <td>{jam}</td>
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            <table className="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>Waktu</th>
                   {hari.map((day, index) => (
-                    <td key={index}>
-                      <span className="custom-checkbox">
-                        <input
-                          type="checkbox"
-                          id={`checkbox${index}${jam}`}
-                          checked={selectedWaktu.some(
-                            ({ hari: selectedHari, waktu: selectedWaktu }) =>
-                              selectedHari === day && selectedWaktu === jam
-                          )}
-                          onChange={() => !isSaved && toggleCheckbox(day, jam)}
-                        />
-                        <label htmlFor={`checkbox${index}${jam}`}></label>
-                      </span>
-                    </td>
+                    <th key={index}>{day}</th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {waktu.map((jam, index) => (
+                  <tr key={index}>
+                    <td>{jam}</td>
+                    {hari.map((day, index) => (
+                      <td key={index}>
+                        <span className="custom-checkbox">
+                          <input
+                            type="checkbox"
+                            id={`checkbox${index}${jam}`}
+                            checked={selectedWaktu.some(
+                              ({ hari: selectedHari, waktu: selectedWaktu }) =>
+                                selectedHari === day && selectedWaktu === jam
+                            )}
+                            onChange={() => toggleCheckbox(day, jam)}
+                          />
+                          <label htmlFor={`checkbox${index}${jam}`}></label>
+                        </span>
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
           <div className="button-wrapper">
             {!isSaved && (
               <button className="btn btn-save" onClick={handleSave}>
